@@ -1,0 +1,2028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MYECOSYSTEM - Discover Malaysia's Nature</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #e0f2f7 0%, #d1e7e0 50%, #c8e6c9 100%);
+            color: #1f2937;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+		
+		/* Navigation Bar Styles */
+        .navbar {
+            background-color: #166534; /* Darker green */
+            padding: 1rem 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            color: #ecfdf5; /* Light green for brand */
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            color: #d1fae5;
+        }
+
+        .nav-links a {
+            color: #ecfdf5;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background-color: #34d399; /* Lighter green on hover/active */
+            color: #065f46;
+        }
+
+        .nav-links a.active {
+            font-weight: bold;
+        }
+
+        .feedback-post {
+            background-color: #ecfdf5; 
+            border: 1px solid #d1fae5; 
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .question-item {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background-color: #f0fdf4;
+            border-radius: 0.5rem;
+            border: 1px solid #d1fae5;
+        }
+
+        .question-item label {
+            display: block;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+        }
+
+        .question-item input[type="radio"] {
+            margin-right: 0.5rem;
+        }
+
+        .page-content.hidden {
+            display: none;
+        }
+
+        .main-content-area {
+            max-width: 5xl;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+        }
+
+        #scrollToTopBtn {
+            display: none; 
+            position: fixed; 
+            bottom: 20px; 
+            right: 30px; 
+            z-index: 99; 
+            border: none; 
+            outline: none;
+            background-color: #3CB371; 
+            color: white; 
+            cursor: pointer; 
+            padding: 15px; 
+            border-radius: 10px; 
+            font-size: 18px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        #scrollToTopBtn:hover {
+            background-color: #228B22; 
+            transform: translateY(-2px);
+        }
+
+        .bottom-back-button {
+            display: none; 
+            background-color: #4CAF50; 
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 2rem; 
+            transition: background-color 0.3s, transform 0.3s;
+            display: flex; 
+            align-items: center;
+            justify-content: center;
+            width: fit-content; 
+            margin-left: auto; 
+            margin-right: auto;
+        }
+
+        .bottom-back-button:hover {
+            background-color: #45a049;
+            transform: translateY(-1px);
+        }
+
+        .hero-section {
+            background: linear-gradient(to right, #3CB371, #2E8B57); 
+            color: white;
+            padding: 4rem 1rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-section h2 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-section p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.4;
+        }
+
+        .hero-button {
+            background-color: #FFD700;
+            color: #1f2937;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px; 
+            font-weight: bold;
+            font-size: 1.25rem;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+
+        .hero-button:hover {
+            background-color: #DAA520; 
+            transform: translateY(-3px);
+        }
+
+        .card {
+            background-color: #ecfdf5;
+            border: 1px solid #d1fae5;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card img{
+            width: 250px;
+            height: 240px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .reaction-question {
+            background-color: #e0f2f7;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .emoji-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .emoji-button {
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+            background: none;
+            border: none;
+            padding: 0.25rem;
+            border-radius: 50%;
+        }
+
+        .emoji-button:hover {
+            transform: scale(1.2);
+        }
+
+        .emoji-button.selected {
+            background-color: #d1fae5;
+            transform: scale(1.2);
+            box-shadow: 0 0 0 3px #3CB371;
+        }
+		
+		.slide {
+      display: none;
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+      padding: 60px 30px;
+      box-sizing: border-box;
+    }
+    .slide.active {
+      display: block;
+      animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .overlay {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 700px;
+    }
+	
+	.controls {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+    }
+    .controls button {
+      padding: 10px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .controls button:hover {
+      background-color: rgba(255, 255, 255, 0.4);
+    }
+    iframe {
+      margin-top: 20px;
+      max-width: 100%;
+      border: 4px solid rgba(255, 255, 255, 0.6);
+    }
+	.overlay h1 {
+      margin-top: 0;
+      font-size: 2.5em;
+	  margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      overflow-x: hidden;
+      color: #fff;
+    }
+	.overlay p {
+      margin-top: 0;
+      font-size: 1.0em;
+	  margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      overflow-x: hidden;
+      color: #fff;
+    }
+	
+	/* Chat Toggle Button */
+        .chat-toggle-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #166534; /* Darker green */
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000; /* Ensure it's above other content */
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .chat-toggle-button:hover {
+            transform: scale(1.1);
+        }
+
+        /* Chat Popup (Initial State - Hidden) */
+        .chat-popup {
+            position: fixed;
+            bottom: 90px; /* Adjust based on button height + spacing */
+            right: 20px;
+            width: 350px;
+            height: 450px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 999; /* Slightly lower than the toggle button */
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px); /* Starts slightly below its final position */
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        /* Class added by JavaScript to show the popup */
+        .chat-popup.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0); /* Moves to its final position */
+        }
+
+        /* Chat Header */
+        .chat-header {
+            background-color: #166534;
+            color: white;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .chat-title {
+            font-weight: bold;
+        }
+
+        .chat-close-button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 0 5px;
+        }
+
+        /* Chat Body */
+        .chat-body {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto; /* Allows scrolling for messages */
+            background-color: #f9f9f9;
+        }
+
+        /* Message Styling (Updated for new addMessage function) */
+        .message {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start; /* Align avatar and bubble */
+        }
+
+        .message.bot {
+            justify-content: flex-start;
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message .avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #e0e0e0; /* Or any color for bot avatar background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            margin-right: 8px; /* Space between avatar and bubble */
+            flex-shrink: 0; /* Prevent avatar from shrinking */
+        }
+
+        .message.user .avatar {
+            display: none; /* Hide avatar for user messages if desired */
+        }
+
+        .message-bubble {
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 75%; /* Limit width of message bubble */
+            word-wrap: break-word; /* Ensure long words break */
+        }
+
+        .message.bot .message-bubble {
+            background-color: #e0e0e0;
+            color: #333;
+        }
+
+        .message.user .message-bubble {
+            background-color: #007bff; /* Blue for user messages */
+            color: white;
+        }
+
+        /* Chat Footer */
+        .chat-footer {
+            padding: 10px 15px;
+            border-top: 1px solid #eee;
+            display: flex;
+            background-color: #fff;
+        }
+
+        #chat-input {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+
+        .send-button {
+            background-color: #166534;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .send-button:hover {
+            background-color: #1a7b45; /* Slightly lighter green on hover */
+        }
+
+        /* Quiz Specific Styles (from the separate quiz HTML, integrated here) */
+        .quiz-container { /* Adjusted from .quiz-card-container */
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            padding: 2rem;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            border: 2px solid #166534;
+            margin-top: 2rem; /* Added margin-top to separate from main content */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-title {
+            color: #166534; /* Darker green */
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .quiz-question-card { 
+            background-color: #f0fdf4;
+            border: 1px solid #d1fae5;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: left;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .quiz-question-text { 
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        .quiz-answer-choice { 
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+        }
+        .quiz-answer-choice input[type="radio"] {
+            margin-right: 0.75rem;
+            transform: scale(1.2);
+        }
+        .quiz-answer-choice label {
+            font-size: 1rem;
+            color: #555;
+            cursor: pointer;
+            flex-grow: 1;
+        }
+        .quiz-submit-button { 
+            background-color: #22c55e;
+            color: white;
+            font-weight: 700;
+            padding: 0.8rem 2rem;
+            border-radius: 0.75rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+        .quiz-submit-button:hover {
+            background-color: #15803d;
+            transform: translateY(-2px);
+        }
+        .quiz-results-container { 
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            background-color: #e6ffed;
+            border: 1px solid #a7f3d0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .quiz-score-text { 
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #166534;
+            margin-bottom: 1rem;
+        }
+        .quiz-feedback-item { 
+            text-align: left;
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+            color: #444;
+        }
+        .quiz-feedback-item .correct-answer {
+            font-weight: 600;
+            color: #16a34a;
+        }
+        .quiz-feedback-item.incorrect {
+            color: #dc2626;
+        }
+        .quiz-feedback-item.correct {
+            color: #16a34a;
+        }
+        .quiz-restart-button { 
+            background-color: #f97316;
+            color: white;
+            font-weight: 700;
+            padding: 0.8rem 2rem;
+            border-radius: 0.75rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+        }
+        .quiz-restart-button:hover {
+            background-color: #ea580c;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <nav class="navbar">
+        <a href="#" class="navbar-brand" onclick="showPage('home-page')">MYECOSYSTEM</a>
+        <div class="nav-links">
+            <a href="#" onclick="showPage('home-page')" id="home-nav">Home</a>
+			<a href="#" onclick="showPage('about-us-page')" id="about-us-nav">About Us</a>
+            <a href="#" onclick="showPage('kl-eco-forest-page')" id="kl-eco-forest-nav">KL Eco Forest</a>
+            <a href="#" onclick="showPage('sijangkang-page')" id="sijangkang-nav">Sijangkang Mangrove</a>
+			<a href="#" onclick="showPage('kesedar-page')" id="kesedar-nav">KESEDAR</a>
+        </div>
+    </nav>
+
+    <main class="main-content-area">
+        <section id="home-page" class="page-content">
+            <div class="hero-section">
+                <h2 class="text-shadow">Discover Malaysia's Natural Wonders!</h2>
+                <p class="text-shadow">Dive into captivating stories, challenge your knowledge with eco-quizzes, and embark on virtual journeys through Malaysia's breathtaking landscapes.</p>
+                <button onclick="showPage('our-pages-section', true)" class="hero-button">Start Your Eco-Adventure!</button>
+            </div>
+
+            <h2 class="text-3xl font-bold text-emerald-700 mb-4 pb-2 border-b-2 border-emerald-300">Welcome To Our MyEcoSystem</h2>
+            <p class="text-lg mb-4">MyEcoSystem is your gateway to discovering Malaysia's rich natural heritage. We transform academic research into engaging, interactive experiences, making environmental education accessible and exciting for everyone. Whether you're a student, a nature enthusiast, or just curious, our platform offers a unique way to connect with Malaysia's diverse ecosystems.</p>
+            <p class="text-lg mb-8">Explore fascinating insights into forest carrying capacities, vital mangrove conservation efforts, and the powerful role of social media in promoting sustainable eco-tourism. Join us in appreciating, exploring, and protecting the natural beauty that surrounds us!</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                <div class="card text-center">
+                    <img src="KL FOREST RANDOM VIEW.jpg" alt="" class="w-full h-auto rounded-lg shadow-md mb-4 mx-auto">
+                    <h3 class="text-xl font-semibold text-emerald-800 mb-2">KL Eco Forest</h3>
+                    <p class="text-md">A green oasis in the heart of the city. Discover its unique biodiversity and iconic canopy walk.</p>
+                </div>
+                <div class="card text-center">
+                    <img src="SIJANGKANGWELCOMEBOARD.jpg" alt="" class="w-full h-auto rounded-lg shadow-md mb-4 mx-auto">
+                    <h3 class="text-xl font-semibold text-emerald-800 mb-2">Sijangkang Mangrove</h3>
+                    <p class="text-md">Unravel the mysteries of the mangrove ecosystem, a crucial natural defense and wildlife sanctuary.</p>
+                </div>
+                <div class="card text-center">
+                    <img src="kesedar1.jpg" alt="" class="w-full h-auto rounded-lg shadow-md mb-4 mx-auto">
+                    <h3 class="text-xl font-semibold text-emerald-800 mb-2">KESEDAR Research</h3>
+                    <p class="text-md">Delve into regional development and how social media is shaping the future of eco-tourism.</p>
+                </div>
+            </div>
+			
+			<div class="chat-toggle-button" id="chat-toggle-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle"><path d="M21 11.5a9 9 0 0 1-9 9C6.477 20.5 2 16.023 2 10.5S6.477 1.5 12 1.5s9 4.477 9 10z"></path><path d="M22 22l-4-4"></path></svg>
+    </div>
+
+    <div class="chat-popup" id="chat-popup">
+        <div class="chat-header">
+            <div class="chat-title">Chat with Support</div>
+            <button class="chat-close-button" id="chat-close-button">×</button>
+        </div>
+        <div class="chat-body" id="chat-body">
+            <div class="message bot">
+                <div class="avatar">
+                    <span>🤖</span>
+                </div>
+                <div class="message-bubble">Hi there! How can I help you today?</div>
+            </div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chat-input" placeholder="Type your message...">
+            <button class="send-button" id="send-button">Send</button>
+        </div>
+    </div>
+
+        </section>
+
+        <section id="about-us-page" class="page-content hidden">
+            <h2 class="text-3xl font-bold text-emerald-700 mb-4 pb-2 border-b-2 border-emerald-300">About Us: Our Vision for Nature</h2>
+            <p class="text-lg mb-4">"My EcoExperience" is more than just a website; it's a vibrant community hub dedicated to sharing the personal stories and profound experiences of individuals who journey through Malaysia's natural treasures. From serene parks to majestic forests and bustling eco-tourism sites, we believe that personal connection amplifies appreciation.</p>
+            <p class="text-lg mb-8">The phrase "Through People and Media" encapsulates our core mission: to showcase how people engage with nature and share their adventures through compelling social media content, insightful videos, and stunning photography. Our platform transforms academic research into digestible, inspiring narratives.</p>
+            <h3 class="text-2xl font-semibold text-emerald-800 mt-6 mb-3">Our Guiding Objectives:</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+                <div class="card text-center">
+                    <h4 class="text-xl font-bold text-emerald-700 mb-2">Boost Awareness</h4>
+                    <p class="text-md">To enhance awareness and understanding of student research on Malaysia's natural attractions and sustainable tourism.</p>
+                </div>
+                <div class="card text-center">
+                    <h4 class="text-xl font-bold text-emerald-700 mb-2">Ignite Engagement</h4>
+                    <p class="text-md">To develop an enjoyable, interactive experience that motivates continuous engagement with our platform and its valuable content.</p>
+                </div>
+                <div class="card text-center">
+                    <h4 class="text-xl font-bold text-emerald-700 mb-2">Ensure Accessibility</h4>
+                    <p class="text-md">To provide accessible, user-friendly content, tailored to our target audience, on social media's role in promoting natural attractions.</p>
+            </div>
+			<button onclick="goBack()" class="bottom-back-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 =01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Back
+            </button>
+        </section>
+
+        <section id="our-pages-section" class="page-content hidden">
+            <h2 class="text-3xl font-bold text-emerald-700 mb-4 pb-2 border-b-2 border-emerald-300">Our Eco-Destinations</h2>
+            <p class="text-lg mb-6">Embark on a virtual journey through Malaysia's captivating natural attractions. Each destination offers a unique learning experience, from lush forests to vital mangrove ecosystems.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card text-center">
+                    <h3 class="text-2xl font-semibold text-emerald-800 mb-3">KL Eco Forest</h3>
+                    <p class="text-md mb-4">Step into an urban jungle oasis. Discover the history, the thrilling canopy walk, and the secrets of sustainable tourism management in the heart of Kuala Lumpur.</p>
+                    <button onclick="showPage('kl-eco-forest-page', true)" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Explore KL Eco Forest</button>
+                </div>
+                <div class="card text-center">
+                    <h3 class="text-2xl font-semibold text-emerald-800 mb-3">Sijangkang Mangrove</h3>
+                    <p class="text-md mb-4">Journey into the critical mangrove ecosystem. Learn about its vital role in protecting coastlines and nurturing diverse wildlife, then test your knowledge with our eco-challenge!</p>
+                    <button onclick="showPage('sijangkang-page', true)" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Explore Sijangkang</button>
+                </div>
+                <div class="card text-center">
+                    <h3 class="text-2xl font-semibold text-emerald-800 mb-3">KESEDAR Research</h3>
+                    <p class="text-md mb-4">Uncover the impactful work of KESEDAR in regional development. Understand how social media plays a pivotal role in promoting and influencing tourism in natural areas.</p>
+                    <button onclick="showPage('kesedar-page', true)" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Explore KESEDAR</button>
+                </div>
+            </div>
+            <button onclick="goBack()" class="bottom-back-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 =01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Back
+            </button>
+        </section>
+
+        <section id="kl-eco-forest-page" class="page-content hidden">
+            <h2 class="text-4xl font-bold text-emerald-800 mb-6 pb-3 border-b-4 border-emerald-400 text-center">KL Forest Eco Park: The Green Heart of Kuala Lumpur</h2>
+            
+            <div class="bg-emerald-50 p-6 rounded-lg shadow-md mb-8">
+                <p class="text-lg mb-4">Step into KL Forest Eco Park, a living testament to Kuala Lumpur's commitment to nature. Formerly known as Bukit Nanas Forest Reserve, this urban jungle sanctuary holds the distinction of being Malaysia's oldest permanent forest reserve, gazetted way back in 1906. It stands as a remarkable paradox, a lush, vibrant tropical rainforest thriving amidst the city's modern skyscrapers, offering a unique blend of urban and natural landscapes.</p>
+                <p class="text-lg">This park isn't just a green space; it's a critical ecological haven, providing vital oxygen and supporting diverse flora and fauna right in the heart of the bustling metropolis. Its presence reminds us of the delicate balance between rapid urbanization and environmental preservation.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-bold text-emerald-700 mb-4 pb-2 border-b-2 border-emerald-300">Experience the Canopy Walk</h3>
+                    <img src="VIEW FROM KL FOREST.jpg" alt="" class="w-full h-auto rounded-lg shadow-md mb-4 mx-auto">
+                    <p class="text-lg mb-4">One of the park's most iconic features is its impressive Canopy Walk. Suspended 21 meters (approximately 70 feet) above the forest floor and stretching 200 meters (about 656 feet) long, this walkway offers an exhilarating perspective of the rainforest. From up here, you'll be eye-level with the lush canopy, observing the intricate life within the trees, and enjoying breathtaking panoramic views of the Kuala Lumpur city skyline peeking through the foliage.</p>
+                    <p class="text-lg">It's a perfect spot for photography enthusiasts and anyone looking to connect with nature from a unique vantage point.</p>
+
+                    <h3 class="text-2xl font-bold text-emerald-700 mt-6 mb-3 pb-2 border-b-2 border-emerald-300">A Haven of Biodiversity</h3>
+                    <img src="KL FOREST VIEW.jpg" alt="" class="w-full h-48 object-cover rounded-lg shadow-md mb-4 mx-auto">
+                    <p class="text-lg mb-4">Despite its urban setting, KL Forest Eco Park is a treasure trove of biodiversity. Keep your eyes peeled for the park's fascinating residents:</p>
+                    <ul class="list-disc list-inside text-lg space-y-2 bg-emerald-100 p-4 rounded-md shadow-sm">
+                        <li><strong>Flora:</strong> Discover towering Keruing trees, vibrant wild orchids, and a dense undergrowth of ferns and other tropical plants. The park is a living laboratory of rainforest ecology.</li>
+                        <li><strong>Fauna:</strong> While large mammals are rare, you might spot <b>long-tailed macaques</b> swinging through the trees, various species of <b>squirrels</b>, and a delightful array of <b>tropical birds</b> whose calls echo through the canopy. It's a fantastic spot for birdwatching!</li>
+                        <li><strong>Insects & Reptiles:</strong> The forest floor and foliage teem with interesting insects, butterflies, and occasional reptiles, adding to the park's vibrant ecosystem.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold text-emerald-700 mb-4 pb-2 border-b-2 border-emerald-300">Wander Through Enchanting Nature Trails</h3>
+                    <img src="NATURE TRAIL .jpg" alt="" class="w-full h-48 object-cover rounded-lg shadow-md mb-4 mx-auto">
+                    <p class="text-lg mb-4">The park features several well-marked and easily navigable nature trails, including the Symington, Arboretum, and Penarahan trails. These paths offer varying lengths and difficulties, suitable for a relaxed stroll or a more energetic hike. Each trail provides a unique sensory experience, from the earthy scent of the forest to the rustling leaves and distant bird calls.</p>
+                    <p class="text-lg">Along these trails, educational signboards provide insights into the different tree species, their medicinal properties, and the importance of preserving this precious ecosystem. It's a fantastic opportunity for both casual visitors and students to learn more about tropical rainforests.</p>
+
+                    <h3 class="text-2xl font-semibold text-emerald-800 mt-6 mb-3 pb-2 border-b-2 border-emerald-300">Plan Your Visit & Share Your Journey</h3>
+                    <p class="text-md mb-4">Ready to explore? Here's essential information and how you can engage further with MYECOSYSTEM:</p>
+                    <ul class="list-disc list-inside text-lg space-y-2 bg-emerald-100 p-4 rounded-md shadow-sm mb-4">
+                        <li><strong>Address:</strong> Kuala Lumpur Eco Park, Kuala Lumpur, 57000 Kuala Lumpur, Federal Territory of Kuala Lumpur</li>
+                        <li><strong>Opening Hours:</strong> Daily: 8.00 AM - 5:30 PM</li>
+                        <li><strong>Admission:</strong> Check official park websites for the latest admission fees.</li>
+                        <li><strong>Best Time to Visit:</strong> Early mornings are ideal for cooler temperatures and better wildlife spotting opportunities. Avoid visiting during heavy rain.</li>
+                        <li><strong>What to Bring:</strong> Comfortable walking shoes, insect repellent, water, and a camera!</li>
+                    </ul>
+
+                    <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button onclick="showPage('kl-eco-forest-story-mode', true)" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+                            Start Virtual Story Mode
+                        </button>
+                        <button onclick="promptKlEcoForestArrival()" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+                            Share Your Experience!
+                        </button>
+                        <button onclick="showPage('kl-forest-game-page', true)" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+                            Play Game!
+                        </button>
+                    </div>
+
+                    <div class="mt-6 p-4 bg-emerald-100 rounded-md shadow-sm text-center">
+                        <p class="text-lg font-semibold text-emerald-800 mb-3">Find your way there! View the KL Forest Eco Park on the map:</p>
+                        <button onclick="showPage('kl-eco-forest-map-display', true); showMapPromptInteraction('kl-forest', true);" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Show Map</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Removed the gameKl-map-container from here -->
+
+            <button onclick="goBack()" class="bottom-back-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 =01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Back
+            </button>
+        </section>
+
+        <!-- New section for the KL Forest Game -->
+        <section id="kl-forest-game-page" class="page-content hidden">
+            <h2 class="text-3xl font-bold text-emerald-700 mb-4 pb-2 border-b-2 border-emerald-300 text-center">KL Forest Eco Park Game!</h2>
+            <p class="text-lg mb-6 text-center">Enjoy playing our eco-themed game!</p>
+            <div class="relative pb-[75%] h-0 overflow-hidden max-w-full bg-gray-200 rounded-md shadow-sm mb-8">
+                <!-- Ensure the iframe fills the container and has no borders -->
+                <iframe src="https://growth-garden-quiz.lovable.app" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="absolute top-0 left-0"></iframe>
+            </div>
+            <button onclick="goBack()" class="bottom-back-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 =01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Back to KL Eco Forest
+            </button>
+        </section>
+		
+		<section id="kl-eco-forest-story-mode" class="page-content hidden">
+		<div id="storySlides">
+			<section class="slide active" style="background-image: url('RANDOM VIEW KL FOREST.jpg');">
+			<div class="overlay">
+				<h1>Welcome to KL Eco Forest Park</h1>
+				<p>KL Eco Park is one of the oldest permanent forest reserves in Malaysia, located in the heart of Kuala Lumpur. Let us guide you through this natural wonder in a step-by-step story mode experience.</p>
+			</div>
+			</section>
+			<section class="slide" style="background-image: url('RANDOM VIEW KL FOREST 2.jpg');">
+			<div class="overlay">
+				<h1>Canopy Walk</h1>
+				<p>Walk among the treetops on the 200-meter-long canopy walkway suspended 21 meters above the forest floor. Get a breathtaking view of the forest canopy and the KL skyline.</p>
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/-EkLr6dE71s" title="KL Forest Eco Park Tour" frameborder="0" allowfullscreen></iframe>
+			</div>
+			</section>
+
+			<section class="slide" style="background-image: url('NATURE TRAIL .jpg');">
+			<div class="overlay">
+				<h1>Nature Trails</h1>
+				<p>Explore forest trails that wind through tropical flora, offering educational insights into Malaysia's rainforest biodiversity and ecosystem.</p>
+			</div>
+			</section>
+
+			<section class="slide" style="background-image: url('VIEW FROM KL FOREST.jpg');">
+			<div class="overlay">
+				<h1>KL Tower View</h1>
+				<p>From within the forest, look up to see the majestic KL Tower rising above the trees — a unique blend of nature and modern city life.</p>
+			</div>
+			</section>
+
+			<section class="slide" style="background-image: url('KL FOREST VIEW.jpg');">
+			<div class="overlay">
+				<h1>Discover the Fauna</h1>
+				<p>Keep an eye out for long-tailed macaques, squirrels, and exotic birds that call this forest home. The park is a natural classroom!</p>
+			</div>
+			</section>
+			
+		<section class="slide" style="background-image: url('LOVE TERKL.jpg');">
+		<div class="overlay">
+			<h1>End of Tour</h1>
+			<p>Thank you for joining the virtual tour of KL Eco Park. We hope this story mode helped you appreciate the balance between urban development and nature preservation.</p>
+			<button onclick="showPage('kl-eco-forest-page')" style="margin-top: 20px; padding: 12px 20px; font-size: 16px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
+			🔙 Back to KL Eco Forest Page
+			</button>
+		</div>
+		</section>
+
+		</div>
+		<div class="controls flex justify-center mt-6 space-x-4">
+			<button id="prevBtn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded">⬅️ Previous</button>
+			<button id="nextBtn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded">Next ➡️</button>
+		</div>
+		</section>
+
+        <section id="kl-eco-forest-arrival-prompt" class="page-content hidden">
+            <h2 class="text-3xl font-bold text-emerald-700 mb-4 pb-2 border-b-2 border-emerald-300">KL Eco Forest: Are You Here?</h2>
+            <div class="bg-emerald-100 p-6 rounded-lg shadow-md text-center">
+                <p class="text-xl font-semibold text-emerald-800 mb-6">Are you currently at KL Forest Eco Park?</p>
+                <div class="flex justify-center space-x-4">
+                    <button onclick="handleKlEcoForestArrival(true)" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+                        Yes, I'm here!
+                    </button>
+                    <button onclick="handleKlEcoForestArrival(false)" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+                        No, show me the map!
+                    </button>
+                </div>
+            </div>
+            <button onclick="goBack()" class="bottom-back-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 =01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Back
+            </button>
+        </section>
+
+        <section id="kl-eco-forest-map-display" class="page-content hidden">
+            <h2 class="text-3xl font-bold text-emerald-700 mb-4 pb-2 border-b-2 border-emerald-300">KL Eco Forest: Find Your Way!</h2>
+            <p class="text-lg mb-6">Planning your visit? Here's the map to KL Forest Eco Park. We hope to see you there soon to share your reactions!</p>
+            <div class="relative pb-[75%] h-0 overflow-hidden max-w-full bg-gray-200 rounded-md shadow-sm">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3983.785522252636!2d101.69965937363561!3d3.1511944531428577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc49015ffc48b5%3A0xaeca6b01ac367c20!2sKL%20Forest%20Eco%20Park%20(E2%20Entrance)!5e0!3m2!1sen!2smy!4v1750212380920!5m2!1sen!2smy" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="absolute top-0 left-0"></iframe>
+            </div>
+            <p class="text-sm text-gray-600 mt-2"><strong>Address:</strong> Kuala Lumpur Eco Park, Kuala Lumpur, 57000 Kuala Lumpur, Federal Territory of Kuala Lumpur</p>
+            <p class="text-sm text-gray-600"><strong>Opening Hours:</strong> Daily: 8.00am - 5:30pm</p>
+            <button onclick="goBack()" class="bottom-back-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 =01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Back
+            </button>
+        </section>
+
+
+        <section id="kl-eco-forest-reaction-page" class="page-content hidden">
+            <h2 class="text-3xl font-bold text-emerald-700 mb-4 pb-2 border-b-2 border-emerald-300">KL Eco Forest: Your Reactions!</h2>
+            <p class="text-lg mb-6">We'd love to hear your live reactions from KL Forest Eco Park. Click on the emojis to share your thoughts!</p>
+
+            <div class="space-y-4">
+                <div id="kl-forest-crowd-reaction" class="reaction-question">
+                    <p class="font-medium text-emerald-800">How would you describe the crowd levels?</p>
+                    <div class="emoji-buttons">
+                        <button class="emoji-button" data-emoji="thumbsUp" onclick="recordKlEcoForestReaction('kl-forest-crowd-reaction', 'thumbsUp')">👍</button>
+                        <button class="emoji-button" data-emoji="heart" onclick="recordKlEcoForestReaction('kl-forest-crowd-reaction', 'heart')">❤️</button>
+                        <button class="emoji-button" data-emoji="happy" onclick="recordKlEcoForestReaction('kl-forest-crowd-reaction', 'happy')">😊</button>
+                        <button class="emoji-button" data-emoji="neutral" onclick="recordKlEcoForestReaction('kl-forest-crowd-reaction', 'neutral')">😐</button>
+                        <button class="emoji-button" data-emoji="sad" onclick="recordKlEcoForestReaction('kl-forest-crowd-reaction', 'sad')">😞</button>
+                    </div>
+                </div>
+
+                <div id="kl-forest-feeling-reaction" class="reaction-question">
+                    <p class="font-medium text-emerald-800">How did you feel during your visit?</p>
+                    <div class="emoji-buttons">
+                        <button class="emoji-button" data-emoji="thumbsUp" onclick="recordKlEcoForestReaction('kl-forest-feeling-reaction', 'thumbsUp')">👍</button>
+                        <button class="emoji-button" data-emoji="heart" onclick="recordKlEcoForestReaction('kl-forest-feeling-reaction', 'heart')">❤️</button>
+                        <button class="emoji-button" data-emoji="happy" onclick="recordKlEcoForestReaction('kl-forest-feeling-reaction', 'happy')">😊</button>
+                        <button class="emoji-button" data-emoji="neutral" onclick="recordKlEcoForestReaction('kl-forest-feeling-reaction', 'neutral')">😐</button>
+                        <button class="emoji-button" data-emoji="sad" onclick="recordKlEcoForestReaction('kl-forest-feeling-reaction', 'sad')">😞</button>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="goBack()" class="bottom-back-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 =01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Back
+            </button>
+        </section>
+
+        <section class="page-content hidden" id="sijangkang-page">
+            <h2 class="text-4xl font-bold text-emerald-800 mb-6 pb-3 border-b-4 border-emerald-400 text-center">Sijangkang Mangrove Park: Nature's Vital Coastal Guardian</h2>
+            
+            <div class="bg-emerald-50 p-6 rounded-lg shadow-md mb-8">
+                <p class="text-lg mb-4">Nestled in Selangor, Malaysia, near Telok Panglima Garang, Sijangkang is more than just a tranquil village, it is home to a vibrant and critically important mangrove forest. These unique ecosystems are not merely beautiful landscapes, they serve as a crucial natural defense against coastal erosion and storm surges, protecting both the land and its communities.</p>
+                <p class="text-lg">Sijangkang's mangroves are vital nurseries for countless marine species, providing a rich feeding ground and breeding area for fish, crabs, and other aquatic life. They also support a diverse array of terrestrial creatures, making the park a true hotspot of biodiversity and a testament to nature's resilience.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-bold text-emerald-700 mb-4 pb-2 border-b-2 border-emerald-300">The Ecological Importance of Mangroves</h3>
+                    
+                    <p class="text-lg mb-4">A respectable horticultural facility. In addition to providing vital agricultural supplies like fertilizer and gardening tools, the nursery specializes in the production and distribution of a broad range of tropical fruit tree saplings, including citrus, durian, and mango. The center is open every day and serves both commercial farmers and individual gardeners. It actively promotes sustainable agricultural methods and local agro-business. Pusat Nurseri Sijangkang has grown to be a significant player in the area's agricultural industry thanks to its advantageous location, extensive plant choices, and dependable customer support.</p>
+                    
+                    <img src="RANDOM PICTURE AT PAYA BAKAU.jpg" alt="[A clear sign for 'Pusat Nurseri Bakau Sijangkang' amidst lush greenery]" class="w-full h-auto rounded-lg shadow-md mb-4 mx-auto mt-6">
+                 
+
+                    <h3 class="text-2xl font-bold text-emerald-700 mt-6 mb-3 pb-2 border-b-2 border-emerald-300">Sijangkang Mangrove Walk: A Journey Through Mud and Nature</h3>
+                    <img src="PAYA BAKAU RANDOM.jpg" alt="[Mud-covered boots on a wooden boardwalk, showing immersion in the mangrove environment]" class="w-full h-48 object-cover rounded-lg shadow-md mb-4 mx-auto">
+                    <p class="text-lg mb-4">This photo captures a spontaneous and muddy moment during an outdoor activity in Sijangkang, where participants found themselves immersed in nature quite literally. With boots caked in thick mud and sunlight streaming through the mangrove canopy, the experience reflects the unpredictable yet rewarding nature of exploring Malaysia’s rich ecosystems. The wooden planks beneath their feet suggest a trail through a wetland or mangrove area, offering both challenge and adventure. It’s a reminder that meaningful learning and connection with the environment often come from stepping out of comfort zones and embracing the messiness of real-world exploration.What will tourists get?</p>
+                   <ul class="list-disc list-inside text-lg space-y-2 bg-emerald-100 p-4 rounded-md shadow-sm">
+                        <li><strong>Hands-On Learning:</strong> Walking through the muddy pathways provided an immersive learning experience about the biodiversity and importance of mangrove ecosystems.</li>
+                       <li><strong>Immersive Nature Walks:</strong> Explore wooden walkways and muddy trails that run through the heart of the mangrove forest.</li>
+                        <li><strong>Hands-On Eco Adventure:</strong> Walking through soft, wet mud offers a fun, physical experience that connects visitors directly with the environment.</li>
+                    </ul>
+                    
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold text-emerald-700 mb-4 pb-2 border-b-2 border-emerald-300">Community Involvement & Visitor Activities</h3>
+                    <img src="SIJANGKANGWELCOMEBOARD.jpg" alt="[A welcoming archway to Taman Rekreasi Paya Bakau Kampung Sijangkang]" class="w-full h-48 object-cover rounded-lg shadow-md mb-4 mx-auto">
+                    <p class="text-lg mb-4">The local community of Sijangkang plays a vital role in the conservation and management of the mangrove park. Their dedication ensures the preservation of this natural heritage while promoting sustainable eco-tourism.</p>
+                    <p class="text-lg">Visitors can enjoy various activities that offer an immersive experience:</p>
+                    <ul class="list-disc list-inside text-lg space-y-2 bg-emerald-100 p-4 rounded-md shadow-sm">
+                        <li><strong>Boardwalk Strolls:</strong> Explore the dense mangrove forest via well-maintained wooden boardwalks, offering close-up views of the unique flora and fauna.</li>
+                        <li><strong>Photography:</strong> Capture the stunning natural beauty, from intricate root systems to vibrant wildlife.</li>
+                        <li><strong>Educational Tours:</strong> Many local guides offer insightful tours, sharing knowledge about the ecosystem and its importance.</li>
+                    </ul>
+                    <img src="SIJANGKANGTRAIL.jpg" alt="[A paved trail winding through a lush green forest, inviting exploration]" class="w-full h-auto rounded-lg shadow-md mb-4 mx-auto mt-6">
+
+                    <h3 class="text-2xl font-semibold text-emerald-800 mt-6 mb-3 pb-2 border-b-2 border-emerald-300">Achievements & Eco-Challenge!</h3>
+                     <div class="grid grid-cols-1 gap-6 mb-8">
+                        <div class="card text-center">
+                            <img src="PAYA BAKAU SIJANGKANG ACHIEVEMENT.jpg" alt="[Display board showcasing 'Paya Bakau' achievements with awards and certifications]" class="w-full h-48 object-cover rounded-lg shadow-md mb-4 mx-auto">
+                            <p class="text-md text-emerald-800 font-semibold">Celebrate the dedication and hard work that has earned Paya Bakau Sijangkang recognition for its outstanding conservation efforts!</p>
+                        </div>
+                        <div class="card text-center">
+                            <img src="SIJANGKANG PAYA BAKAU ACHIEVEMENT 2.jpg" alt="[Another display board detailing various mangrove planting programs and CSR projects]" class="w-full h-48 object-cover rounded-lg shadow-md mb-4 mx-auto">
+                            <p class="text-md text-emerald-800 font-semibold">Discover the numerous replanting programs and corporate social responsibility (CSR) initiatives that actively contribute to the ongoing health and expansion of Sijangkang's vital mangrove ecosystem.</p>
+                        </div>
+                    </div>
+
+                    <p class="mb-2 text-lg"><strong>Address:</strong> Sijangkang, Selangor, Malaysia (Exact entrance points might vary, but this gives a general area near Telok Panglima Garang)</p>
+                    <p class="text-md text-gray-600 mt-2 mb-4"><strong>Best Time to Visit:</strong> Check local tides for optimal viewing .</p>
+                    
+                    <div id="sijangkang-map-prompt-container" class="mt-6 p-4 bg-emerald-100 rounded-md shadow-sm text-center">
+                        <p class="text-lg font-semibold text-emerald-800 mb-3">Curious to see where these natural wonders thrive? Find Sijangkang on the map!</p>
+                        <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 mr-2" onclick="showPage('sijangkang-map-display', true); showMapPromptInteraction('sijangkang', true);">Yes, show me the map!</button>
+                        <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" onclick="showMapPromptInteraction('sijangkang', false)">No, thanks.</button>
+                    </div>
+
+                    <div class="mt-6 p-4 bg-yellow-50 rounded-lg shadow-md text-center">
+                        <p class="text-md mb-4 text-emerald-800">Ready to test your knowledge of this amazing ecosystem? Take the Sijangkang Eco-Challenge!</p>
+                        <button class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" onclick="startSijangkangQuiz()">Start Sijangkang Quiz</button>
+                    </div>
+                </div>
+            </div>
+            
+            <button onclick="goBack()" class="bottom-back-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 =01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Back
+            </button>
+        </section>
+
+        <!-- Sijangkang Quiz Page -->
+        <section id="sijangkang-quiz-page" class="page-content hidden">
+            <div class="quiz-container">
+                <h1 class="quiz-title">Sijangkang Knowledge Quiz</h1>
+                <form id="sijangkang-quiz-form">
+                    <!-- Questions will be dynamically loaded here -->
+                </form>
+                <button type="submit" class="quiz-submit-button" id="sijangkang-submit-quiz-btn">Submit Quiz</button>
+
+                <div id="sijangkang-results" class="quiz-results-container hidden">
+                    <p class="quiz-score-text">Your Score: <span id="sijangkang-score">0</span> / <span id="sijangkang-total-questions">0</span></p>
+                    <div id="sijangkang-feedback-details">
+                        <!-- Detailed feedback for each question will go here -->
+                    </div>
+                    <button class="quiz-restart-button" id="sijangkang-restart-quiz-btn">Restart Quiz</button>
+                </div>
+            </div>
+            <button onclick="showPage('sijangkang-page', false)" class="bottom-back-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 =01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Back to Sijangkang Page
+            </button>
+        </section>
+
+        <!-- Sijangkang Map Display Page -->
+        <section id="sijangkang-map-display" class="page-content hidden">
+            <h2 class="text-3xl font-bold text-emerald-700 mb-4 pb-2 border-b-2 border-emerald-300">Sijangkang Mangrove Park: Find Your Way!</h2>
+            <p class="text-lg mb-6">Explore the location of Sijangkang Mangrove Park on the map.</p>
+            <div class="relative pb-[75%] h-0 overflow-hidden max-w-full bg-gray-200 rounded-md shadow-sm">
+                <iframe id="sijangkang-map-iframe" src="https://maps.google.com/maps?q=Jalan+Batu+8,+Kampung+Sijangkang,+42500+Telok+Panglima+Garang,+Kuala+Langat,+Selangor+Darul+Ehsan&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="absolute top-0 left-0"></iframe>
+            </div>
+            <p class="text-sm text-gray-600 mt-2"><strong>Address:</strong> Sijangkang, Selangor, Malaysia (Exact entrance points might vary, but this gives a general area near Telok Panglima Garang)</p>
+            <p class="text-sm text-gray-600"><strong>Best Time to Visit:</strong> Check local tides for optimal viewing of mudskippers and other intertidal life.</p>
+            <button onclick="goBack()" class="bottom-back-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 =01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Back
+            </button>
+        </section>
+
+
+        <section id="kesedar-page" class="page-content hidden">
+            <h2 class="text-3xl font-bold text-emerald-700 mb-6 pb-2 border-b-2 border-emerald-300">KESEDAR Research: Shaping Regional Futures</h2>
+            
+            <div class="bg-emerald-50 p-6 rounded-lg shadow-md mb-8">
+                <p class="text-lg mb-4">The South Kelantan Development Authority (KESEDAR), established on 1 May 1978, plays a pivotal role in balancing population distribution, alleviating poverty, and restructuring society in South Kelantan. This region, characterized by its hilly terrain with nearly 50% slopes exceeding 25°C, presents unique developmental challenges. Despite its vast area, only 20% holds potential for agricultural expansion, emphasizing the importance of strategic planning and diversified growth.</p>
+                <p class="text-lg">KESEDAR's initiatives extend beyond traditional development, focusing on sustainable practices and leveraging modern tools like social media to promote tourism in natural areas. Explore how their research contributes to a balanced and prosperous future for the region.</p>
+            </div>
+
+            <h3 class="text-2xl font-bold text-emerald-700 mb-4 pb-2 border-b-2 border-emerald-300">Natural Attractions in South Kelantan</h3>
+            <p class="text-lg mb-6">While KESEDAR operates within the state of Kelantan, its focus area, South Kelantan, is rich with diverse natural attractions. These range from majestic waterfalls and ancient limestone caves to lush rainforests, offering unique eco-tourism experiences.</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <!-- Dabong Overview and List -->
+                <div>
+                    <h4 class="text-xl font-semibold text-emerald-800 mb-4">Dabong, Kelantan: Gateway to Nature's Grandeur</h4>
+                    <p class="text-lg mb-4">Dabong, a district within Kelantan, is a true hidden gem for nature lovers, often serving as the primary gateway to some of the state's most spectacular natural wonders. Its landscape is dominated by dense rainforests and dramatic karst formations.</p>
+                    <ul class="list-disc list-inside text-lg space-y-2 bg-emerald-100 p-4 rounded-md shadow-sm">
+                        <li><strong>Gunung Stong State Park:</strong> Home to the iconic Jelawang Waterfall (also known as Stong Waterfall), which is one of the highest waterfalls in Southeast Asia, cascading over multiple tiers. The park offers challenging trekking trails, lush flora, and opportunities for wildlife spotting.</li>
+                        <li><strong>Limestone Caves:</strong> The area is dotted with impressive limestone caves, including <b>Gua Ikan</b> (Fish Cave) and <b>Keris</b> (Keris Cave). These caves feature intricate rock formations and provide insights into geological processes, often with historical or cultural significance.</li>
+                        <li><strong>Recreational Activities:</strong> Visitors can engage in various activities such as jungle trekking, cave exploration, camping, and enjoying natural pools at the base of waterfalls.</li>
+                    </ul>
+                </div>
+                <!-- Dabong Images -->
+                <div class="grid grid-cols-1 gap-6">
+                    <div class="card text-center">
+                        <img src="kesedar1.jpg" alt="Witness the awe-inspiring cascade of Jelawang Waterfall, one of Southeast Asia's highest, as it carves its path down ancient rock formations in Gunung Stong State Park. Truly a spectacle of nature's power!" class="w-full h-48 object-cover rounded-lg shadow-md mb-4 mx-auto">
+                        <p class="text-md text-emerald-800 font-semibold">Witness the awe-inspiring cascade of Jelawang Waterfall, one of Southeast Asia's highest, as it carves its path down ancient rock formations in Gunung Stong State Park. Truly a spectacle of nature's power!</p>
+                    </div>
+                    <div class="card text-center">
+                        <img src="sunrisedabong.jpg" alt="Gaze upon a breathtaking sunrise over the misty valleys of Dabong. The golden hues painting the clouds create a serene and unforgettable start to your adventure in this natural paradise." class="w-full h-48 object-cover rounded-lg shadow-md mb-4 mx-auto">
+                        <p class="text-md text-emerald-800 font-semibold">Gaze upon a breathtaking sunrise over the misty valleys of Dabong. The golden hues painting the clouds create a serene and unforgettable start to your adventure in this natural paradise.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-bold text-emerald-700 mb-4 pb-2 border-b-2 border-emerald-300">Our Work in Pictures: Promoting KESEDAR Regions</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <div class="card text-center">
+                    <img src="welcometoBahaCampStongDabongBanner.jpg" alt="" class="w-full h-48 object-cover rounded-lg shadow-md mb-4 mx-auto">
+                    <p class="text-md text-emerald-800 font-semibold">A welcoming banner heralds your arrival at Baha Camp Stong, nestled amidst the lush greenery of Gunung Stong State Park. Adventure awaits!</p>
+                </div>
+                <div class="card text-center">
+                    <img src="directionIndicator.jpg" alt="" class="w-full h-48 object-cover rounded-lg shadow-md mb-4 mx-auto">
+                    <p class="text-md text-emerald-800 font-semibold">Follow the path less traveled! This vibrant jungle signpost points the way to Gunung Stong, Gunung Ayam, and Kem Baha, guiding adventurers deeper into the heart of nature.</p>
+                </div>
+                <div class="card text-center">
+                    <img src="random.jpg" alt="" class="w-full h-48 object-cover rounded-lg shadow-md mb-4 mx-auto">
+                    <p class="text-md text-emerald-800 font-semibold">A poignant reminder in the wilderness: "Nasib Alam Bergantung Kepada Perilaku Kita, Amalkan Integriti" (The Fate of Nature Depends on Our Behavior, Practice Integrity). A powerful message for every eco-traveler.</p>
+                </div>
+                <div class="card text-center">
+                    <img src="treedabong.jpg" alt="" class="w-full h-48 object-cover rounded-lg shadow-md mb-4 mx-auto">
+                    <p class="text-md text-emerald-800 font-semibold">Immerse yourself in the ethereal beauty of a mist-shrouded rainforest. The towering trees, cloaked in a soft veil, evoke a sense of mystery and tranquility.</p>
+                </div>
+                <div class="card text-center">
+                    <img src="signdabong.jpg" alt="" class="w-full h-48 object-cover rounded-lg shadow-md mb-4 mx-auto">
+                    <p class="text-md text-emerald-800 font-semibold">An informative sign at Kem Baha offers insights into the geology and unique features of this captivating area, providing context to your natural discoveries.</p>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-bold text-emerald-700 mb-4 pb-2 border-b-2 border-emerald-300">Key Areas of KESEDAR's Impact:</h3>
+            <ul class="list-disc list-inside text-lg space-y-2 bg-emerald-50 p-6 rounded-lg shadow-md mb-8">
+                <li><strong>Poverty Eradication:</strong> Implementing programs to uplift communities and improve living standards.</li>
+                <li><strong>Social Restructuring:</strong> Fostering balanced growth and equitable opportunities across the region.</li>
+                <li><strong>Sustainable Tourism:</strong> Promoting natural attractions responsibly, often leveraging social media for outreach.</li>
+                <li><strong>Agricultural Development:</strong> Identifying and maximizing the potential of limited agricultural land.</li>
+            </ul>
+            <p class="text-lg mt-4 mb-8">KESEDAR's pioneering efforts continue to shape the socio-economic landscape of South Kelantan, ensuring a harmonious balance between development and environmental preservation.</p>
+
+            <h3 class="text-2xl font-bold text-emerald-700 mb-4 pb-2 border-b-2 border-emerald-300">Test Your KESEDAR & Dabong Knowledge!</h3>
+            <div class="bg-yellow-50 p-6 rounded-lg shadow-md text-center mb-8">
+                <p class="text-md mb-4 text-emerald-800">Think you know KESEDAR and the natural wonders of Dabong? Take our quiz to find out and deepen your understanding!</p>
+                <button class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" onclick="startKesedarQuiz()">Start KESEDAR Quiz</button>
+            </div>
+            
+
+            <h3 class="text-2xl font-bold text-emerald-700 mb-4 pb-2 border-b-2 border-emerald-300">Location & Map</h3>
+            <p class="mb-2"><strong>Headquarters:</strong> Gua Musang, Kelantan (formerly Kota Bharu)</p>
+            
+            <div id="kesedar-map-prompt-container" class="mt-6 p-4 bg-emerald-100 rounded-md shadow-sm text-center">
+                <p class="text-lg font-semibold text-emerald-800 mb-3">Interested in KESEDAR's central hub? See their headquarters on the map!</p>
+                <button onclick="showPage('kesedar-map-display', true); showMapPromptInteraction('kesedar', true);" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 mr-2">Yes, show me the map!</button>
+                <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" onclick="showMapPromptInteraction('kesedar', false)">No, thanks.</button>
+            </div>
+            <button onclick="goBack()" class="bottom-back-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 =01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Back
+            </button>
+        </section>
+
+        <!-- KESEDAR Quiz Page -->
+        <section id="kesedar-quiz-page" class="page-content hidden">
+            <div class="quiz-container">
+                <h1 class="quiz-title">KESEDAR Knowledge Quiz</h1>
+                <form id="kesedar-quiz-form">
+                    <!-- Questions will be dynamically loaded here -->
+                </form>
+                <button type="submit" class="quiz-submit-button" id="kesedar-submit-quiz-btn">Submit Quiz</button>
+
+                <div id="kesedar-results" class="quiz-results-container hidden">
+                    <p class="quiz-score-text">Your Score: <span id="kesedar-score">0</span> / <span id="kesedar-total-questions">0</span></p>
+                    <div id="kesedar-feedback-details">
+                        <!-- Detailed feedback for each question will go here -->
+                    </div>
+                    <button class="quiz-restart-button" id="kesedar-restart-quiz-btn">Restart Quiz</button>
+                </div>
+            </div>
+            <button onclick="showPage('kesedar-page', false)" class="bottom-back-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 =01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Back to KESEDAR Page
+            </button>
+        </section>
+
+        <!-- KESEDAR Map Display Page -->
+        <section id="kesedar-map-display" class="page-content hidden">
+            <h2 class="text-3xl font-bold text-emerald-700 mb-4 pb-2 border-b-2 border-emerald-300">KESEDAR Headquarters: Find Your Way!</h2>
+            <p class="text-lg mb-6">Explore the location of KESEDAR Headquarters on the map.</p>
+            <div class="relative pb-[75%] h-0 overflow-hidden max-w-full bg-gray-200 rounded-md shadow-sm">
+                <iframe id="kesedar-map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.4930366907925!2d101.96398087364251!3d5.341442135772706!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31b5dc17a9f64b81%3A0x1eafd9f09b1535ee!2sJelawang%20Waterfall!5e0!3m2!1sen!2smy!4v1750213784644!5m2!1sen!2smy" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="absolute top-0 left-0"></iframe>
+            </div>
+            <p class="text-sm text-gray-600 mt-2"><strong>Address:</strong> Gua Musang, Kelantan (formerly Kota Bharu)</p>
+            <button onclick="goBack()" class="bottom-back-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 =01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Back
+            </button>
+        </section>
+
+    </main>
+
+    <!--<button onclick="topFunction()" id="scrollToTopBtn" title="Go to top">↑ Top</button>-->
+
+    <footer class="bg-emerald-700 text-white py-6 text-center mt-8 rounded-t-lg shadow-inner">
+        <p class="text-md">© 2025 MYECOSYSTEM. All rights reserved.</p>
+    </footer>
+
+</body>
+
+<script>
+        let pageHistory = [];
+        let currentPageId = 'home-page'; 
+
+        function showPage(pageId, pushToHistory = true) {
+            // If navigating from a link, push the current page to history
+            if (pushToHistory && currentPageId !== pageId) {
+                pageHistory.push(currentPageId);
+            }
+
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => {
+                page.classList.add('hidden');
+            });
+            document.getElementById(pageId).classList.remove('hidden');
+            currentPageId = pageId; 
+
+            const backButtons = document.querySelectorAll('.bottom-back-button');
+            if (pageHistory.length > 0) {
+                backButtons.forEach(button => button.style.display = 'flex'); 
+            } else {
+                backButtons.forEach(button => button.style.display = 'none'); 
+            }
+
+            document.querySelector('.main-content-area').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function goBack() {
+            if (pageHistory.length > 0) {
+                const previousPageId = pageHistory.pop();
+                showPage(previousPageId, false);
+            } else {
+                showPage('home-page', false);
+            }
+        }
+
+        function submitParkFeedback(parkName) {
+            const feedbackTextId = `${parkName}-feedback-text`;
+            const reactionBoardId = `${parkName}-reaction-board-posts`;
+
+            const feedbackText = document.getElementById(feedbackTextId).value;
+            const reactionBoardPosts = document.getElementById(reactionBoardId);
+
+            if (feedbackText.trim() !== '') {
+                const newPost = document.createElement('div');
+                newPost.classList.add('feedback-post');
+                newPost.innerHTML = `
+                    <p class="font-medium text-emerald-800"><strong>Anonymous User:</strong> ${feedbackText}</p>
+                    <small class="text-gray-500">Posted on: ${new Date().toLocaleDateString()}</small>
+                `;
+                reactionBoardPosts.prepend(newPost); // Add to the top of the reaction board
+                document.getElementById(feedbackTextId).value = ''; // Clear textarea
+            } else {
+                const messageBox = document.createElement('div');
+                messageBox.className = 'fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50';
+                messageBox.innerHTML = `
+                    <div class="bg-white p-8 rounded-lg shadow-xl text-center">
+                        <h3 class="text-2xl font-bold text-red-700 mb-4">Input Required!</h3>
+                        <p class="text-xl mb-6">Please enter some feedback before submitting.</p>
+                        <button onclick="this.parentNode.parentNode.remove()" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out">Close</button>
+                    </div>
+                `;
+                document.body.appendChild(messageBox);
+            }
+        }
+
+        // Function to start the Sijangkang-specific eco-quiz
+        function startSijangkangQuiz() {
+            showPage('sijangkang-quiz-page', true); // Navigate to the quiz page
+
+            const quizForm = document.getElementById('sijangkang-quiz-form');
+            const resultsContainer = document.getElementById('sijangkang-results');
+            const submitButton = document.getElementById('sijangkang-submit-quiz-btn');
+
+            quizForm.innerHTML = ''; // Clear previous questions
+            resultsContainer.classList.add('hidden'); // Hide results
+            submitButton.style.display = 'block'; // Show submit button
+
+            const questions = [
+                {
+                    question: "Where is Sijangkang Mangrove Park located in Selangor?",
+                    answers: {
+                        a: "Near Kuala Selangor",
+                        b: "Near Telok Panglima Garang",
+                        c: "Near Port Klang",
+                        d: "Near Sepang"
+                    },
+                    correct: "b" 
+                },
+                {
+                    question: "What is a primary ecological role of mangrove forests like Sijangkang?",
+                    answers: {
+                        a: "Providing timber for construction",
+                        b: "Acting as natural coastal defense against erosion",
+                        c: "Attracting large land mammals for tourism",
+                        d: "Producing freshwater for consumption"
+                    },
+                    correct: "b"
+                },
+                {
+                    question: "Which unique amphibious creature is commonly found in mangrove ecosystems such as Sijangkang, known for 'walking' on land?",
+                    answers: {
+                        a: "Penguins",
+                        b: "Mudskippers",
+                        c: "Dolphins",
+                        d: "Jellyfish"
+                    },
+                    correct: "b"
+                },
+                {
+                    question: "Beyond coastal protection, what other significant environmental benefit do mangroves provide?",
+                    answers: {
+                        a: "They generate electricity through their root systems.",
+                        b: "They are efficient carbon sinks, absorbing CO2.",
+                        c: "They create strong ocean currents.",
+                        d: "They desalinate seawater naturally."
+                    },
+                    correct: "b"
+                },
+                {
+                    question: "What is the primary function of the intricate root systems of mangrove trees?",
+                    answers: {
+                        a: "To attract diverse birdlife",
+                        b: "To trap sediment and stabilize shorelines",
+                        c: "To produce edible fruits",
+                        d: "To provide shade for marine animals"
+                    },
+                    correct: "b"
+                },
+                {
+                    question: "Which of the following activities can visitors typically enjoy at Sijangkang Mangrove Park?",
+                    answers: {
+                        a: "Skiing and snowboarding",
+                        b: "Boardwalk strolls and photography",
+                        c: "Desert safaris",
+                        d: "Mountain climbing expeditions"
+                    },
+                    correct: "b"
+                },
+                {
+                    question: "How do mangroves contribute to marine life?",
+                    answers: {
+                        a: "They act as artificial reefs for deep-sea fish.",
+                        b: "They provide rich feeding grounds and breeding areas for marine species.",
+                        c: "They purify the ocean water of all pollutants.",
+                        d: "They are known for their strong currents that attract large predators."
+                    },
+                    correct: "b"
+                },
+                {
+                    question: "What is the best time to visit Sijangkang Mangrove Park for optimal viewing of intertidal life?",
+                    answers: {
+                        a: "During high tide",
+                        b: "During heavy rainfall",
+                        c: "Check local tides",
+                        d: "At night"
+                    },
+                    correct: "c"
+                }
+            ];
+
+            questions.forEach((q, index) => {
+                const questionCard = document.createElement('div');
+                questionCard.classList.add('quiz-question-card');
+                questionCard.innerHTML = `
+                    <p class="quiz-question-text">${index + 1}. ${q.question}</p>
+                    <div class="quiz-answer-choices">
+                        ${Object.entries(q.answers).map(([key, value]) => `
+                            <div class="quiz-answer-choice">
+                                <input type="radio" id="sijangkang-q${index}-${key}" name="sijangkangQuestion${index}" value="${key}">
+                                <label for="sijangkang-q${index}-${key}">${key.toUpperCase()}. ${value}</label>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                quizForm.appendChild(questionCard);
+            });
+            document.getElementById('sijangkang-total-questions').textContent = questions.length;
+        }
+
+        // Function to submit Sijangkang quiz answers
+        function submitSijangkangQuiz() {
+            const questions = [ // Redefine questions here to access correct answers for feedback
+                {
+                    question: "Where is Sijangkang Mangrove Park located in Selangor?",
+                    answers: {
+                        a: "Near Kuala Selangor",
+                        b: "Near Telok Panglima Garang",
+                        c: "Near Port Klang",
+                        d: "Near Sepang"
+                    },
+                    correct: "b" 
+                },
+                {
+                    question: "What is a primary ecological role of mangrove forests like Sijangkang?",
+                    answers: {
+                        a: "Providing timber for construction",
+                        b: "Acting as natural coastal defense against erosion",
+                        c: "Attracting large land mammals for tourism",
+                        d: "Producing freshwater for consumption"
+                    },
+                    correct: "b"
+                },
+                {
+                    question: "Which unique amphibious creature is commonly found in mangrove ecosystems such as Sijangkang, known for 'walking' on land?",
+                    answers: {
+                        a: "Penguins",
+                        b: "Mudskippers",
+                        c: "Dolphins",
+                        d: "Jellyfish"
+                    },
+                    correct: "b"
+                },
+                {
+                    question: "Beyond coastal protection, what other significant environmental benefit do mangroves provide?",
+                    answers: {
+                        a: "They generate electricity through their root systems.",
+                        b: "They are efficient carbon sinks, absorbing CO2.",
+                        c: "They create strong ocean currents.",
+                        d: "They desalinate seawater naturally."
+                    },
+                    correct: "b"
+                },
+                {
+                    question: "What is the primary function of the intricate root systems of mangrove trees?",
+                    answers: {
+                        a: "To attract diverse birdlife",
+                        b: "To trap sediment and stabilize shorelines",
+                        c: "To produce edible fruits",
+                        d: "To provide shade for marine animals"
+                    },
+                    correct: "b"
+                },
+                {
+                    question: "Which of the following activities can visitors typically enjoy at Sijangkang Mangrove Park?",
+                    answers: {
+                        a: "Skiing and snowboarding",
+                        b: "Boardwalk strolls and photography",
+                        c: "Desert safaris",
+                        d: "Mountain climbing expeditions"
+                    },
+                    correct: "b"
+                },
+                {
+                    question: "How do mangroves contribute to marine life?",
+                    answers: {
+                        a: "They act as artificial reefs for deep-sea fish.",
+                        b: "They provide rich feeding grounds and breeding areas for marine species.",
+                        c: "They purify the ocean water of all pollutants.",
+                        d: "They are known for their strong currents that attract large predators."
+                    },
+                    correct: "b"
+                },
+                {
+                    question: "What is the best time to visit Sijangkang Mangrove Park for optimal viewing of intertidal life?",
+                    answers: {
+                        a: "During high tide",
+                        b: "During heavy rainfall",
+                        c: "Check local tides",
+                        d: "At night"
+                    },
+                    correct: "c"
+                }
+            ];
+
+            let score = 0;
+            const feedbackDetails = document.getElementById('sijangkang-feedback-details');
+            feedbackDetails.innerHTML = ''; // Clear previous feedback
+
+            questions.forEach((q, index) => {
+                const selectedAnswer = document.querySelector(`input[name="sijangkangQuestion${index}"]:checked`);
+                const feedbackItem = document.createElement('p');
+                feedbackItem.classList.add('quiz-feedback-item');
+
+                if (selectedAnswer) {
+                    if (selectedAnswer.value === q.correct) {
+                        score++;
+                        feedbackItem.classList.add('correct');
+                        feedbackItem.innerHTML = `<strong>${index + 1}. Correct!</strong>`;
+                    } else {
+                        feedbackItem.classList.add('incorrect');
+                        feedbackItem.innerHTML = `<strong>${index + 1}. Incorrect.</strong> Your answer: ${selectedAnswer.value.toUpperCase()}. Correct answer: <span class="correct-answer">${q.correct.toUpperCase()}. ${q.answers[q.correct]}</span>`;
+                    }
+                } else {
+                    feedbackItem.classList.add('incorrect');
+                    feedbackItem.innerHTML = `<strong>${index + 1}. Unanswered.</strong> Correct answer: <span class="correct-answer">${q.correct.toUpperCase()}. ${q.answers[q.correct]}</span>`;
+                }
+                feedbackDetails.appendChild(feedbackItem);
+            });
+
+            document.getElementById('sijangkang-score').textContent = score;
+            document.getElementById('sijangkang-results').classList.remove('hidden');
+            document.getElementById('sijangkang-submit-quiz-btn').style.display = 'none'; // Hide submit button after submission
+        }
+
+        // Event Listeners for Sijangkang Quiz (within DOMContentLoaded)
+        document.addEventListener('DOMContentLoaded', () => {
+            // ... (other DOMContentLoaded code) ...
+
+            // Ensure these are attached after the quiz elements are in the DOM
+            document.getElementById('sijangkang-submit-quiz-btn').addEventListener('click', submitSijangkangQuiz);
+            document.getElementById('sijangkang-restart-quiz-btn').addEventListener('click', startSijangkangQuiz); // Restart means reload questions
+
+            // --- Initialize the Page ---
+            showPage('home-page', false); // Show the home page on initial load
+        });
+
+
+        function shareContent() {
+            if (navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    text: "Check out MYECOSYSTEM, an awesome platform for learning about Malaysia's nature!",
+                    url: window.location.href
+                }).then(() => {
+                    console.log('Thanks for sharing!');
+                }).catch((error) => {
+                    console.error('Error sharing:', error);
+                    const messageBox = document.createElement('div');
+                    messageBox.className = 'fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50';
+                    messageBox.innerHTML = `
+                        <div class="bg-white p-8 rounded-lg shadow-xl text-center">
+                            <h3 class="text-2xl font-bold text-orange-700 mb-4">Sharing Failed!</h3>
+                            <p class="text-xl mb-6">Could not share content. Please try copying the URL manually.</p>
+                            <button onclick="this.parentNode.parentNode.remove()" class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out">Close</button>
+                        </div>
+                    `;
+                    document.body.appendChild(messageBox);
+            });
+            } else { 
+                const messageBox = document.createElement('div');
+                messageBox.className = 'fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50';
+                messageBox.innerHTML = `
+                    <div class="bg-white p-8 rounded-lg shadow-xl text-center">
+                        <h3 class="2xl font-bold text-blue-700 mb-4">Sharing Not Supported</h3>
+                        <p class="text-xl mb-6">Your browser does not support direct sharing. Please copy the URL:</p>
+                        <input type="text" value="${window.location.href}" readonly class="w-full p-2 border rounded-md mb-4 text-center">
+                        <button onclick="this.parentNode.parentNode.remove()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out">Close</button>
+                    </div>
+                `;
+                document.body.appendChild(messageBox);
+            }
+        }
+
+        let mybutton;
+
+        function scrollFunction() {
+            if (!mybutton) {
+                mybutton = document.getElementById("scrollToTopBtn");
+                if (!mybutton) return; 
+            }
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+
+        function showMapPromptInteraction(parkId, show) {
+            let mapIframeId;
+            let mapContainerToHideId; // New: to hide the prompt container
+
+            if (parkId === 'kl-forest') {
+                mapIframeId = 'kl-forest-map-iframe';
+                mapContainerToHideId = null; // No separate prompt container to hide for KL Eco Forest initially
+            } else if (parkId === 'sijangkang') {
+                mapIframeId = 'sijangkang-map-iframe';
+                mapContainerToHideId = 'sijangkang-map-prompt-container';
+            } else if (parkId === 'kesedar') {
+                mapIframeId = 'kesedar-map-iframe';
+                mapContainerToHideId = 'kesedar-map-prompt-container';
+            }
+
+            const mapIframe = document.getElementById(mapIframeId);
+            const promptContainer = document.getElementById(mapContainerToHideId);
+
+
+            if (show) {
+                if (promptContainer) promptContainer.classList.add('hidden'); // Hide the prompt container
+
+                // Set map source only if it's not already set
+                if (parkId === 'kl-forest' && mapIframe && mapIframe.src === "") {
+                    mapIframe.src = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3983.785522252636!2d101.69965937363561!3d3.1511944531428577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc49015ffc48b5%3A0xaeca6b01ac367c20!2sKL%20Forest%20Eco%20Park%20(E2%20Entrance)!5e0!3m2!1sen!2smy!4v1750212380920!5m2!1sen!2smy";
+                } else if (parkId === 'sijangkang' && mapIframe && mapIframe.src === "") {
+                    mapIframe.src = "https://maps.google.com/maps?q=Jalan+Batu+8,+Kampung+Sijangkang,+42500+Telok+Panglima+Garang,+Kuala+Langat,+Selangor+Darul+Ehsan&t=&z=13&ie=UTF8&iwloc=&output=embed";
+                } else if (parkId === 'kesedar' && mapIframe && mapIframe.src === "") {
+                    mapIframe.src = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.4930366907925!2d101.96398087364251!3d5.341442135772706!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31b5dc17a9f64b81%3A0x1eafd9f09b1535ee!2sJelawang%20Waterfall!5e0!3m2!1sen!2smy!4v1750213784644!5m2!1sen!2smy";
+                }
+            } else { // User clicked "No, thanks." on the prompt
+                if (promptContainer) promptContainer.classList.remove('hidden'); // Show the prompt container again (if it was hidden)
+                const messageBox = document.createElement('div');
+                messageBox.className = 'fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50';
+                messageBox.innerHTML = `
+                    <div class="bg-white p-8 rounded-lg shadow-xl text-center">
+                        <h3 class="text-2xl font-bold text-gray-700 mb-4">No Problem!</h3>
+                        <p class="text-xl mb-6">You can always come back and view the map later.</p>
+                        <button onclick="this.parentNode.parentNode.remove()" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out">Close</button>
+                    </div>
+                `;
+                document.body.appendChild(messageBox);
+            }
+        }
+
+        // --- KL Eco Forest Specific Functions ---
+        // Function to show the "Are you here?" prompt for KL Eco Forest
+        function promptKlEcoForestArrival() {
+            showPage('kl-eco-forest-arrival-prompt', true);
+        }
+
+        // Function to handle "Yes, I'm here!" or "No, show me the map!" for KL Eco Forest
+        function handleKlEcoForestArrival(isArrived) {
+            if (isArrived) {
+                showPage('kl-eco-forest-reaction-page', true); // Go to reaction board
+                loadKlEcoForestReactions(); // Load existing reactions
+            } else {
+                showPage('kl-eco-forest-map-display', true); // Show the map page
+                // The iframe src will be set by showMapPromptInteraction when the page loads,
+                // or ensure it's set here if coming directly from this prompt.
+                const mapIframe = document.getElementById('kl-forest-map-iframe');
+                if (mapIframe && mapIframe.src === "") {
+                    mapIframe.src = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3983.785522252636!2d101.69965937363561!3d3.1511944531428577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc49015ffc48b5%3A0xaeca6b01ac367c20!2sKL%20Forest%20Eco%20Park%20(E2%20Entrance)!5e0!3m2!1sen!2smy!4v1750212380920!5m2!1sen!2smy";
+                }
+            }
+        }
+
+        // Function to record an emoji reaction
+        function recordKlEcoForestReaction(questionId, emoji) {
+            let reactions = JSON.parse(localStorage.getItem('klEcoForestReactions')) || {};
+            reactions[questionId] = emoji;
+            localStorage.setItem('klEcoForestReactions', JSON.stringify(reactions));
+            
+            // Visually update the selected emoji
+            const questionElement = document.getElementById(questionId);
+            const buttons = questionElement.querySelectorAll('.emoji-button');
+            buttons.forEach(button => {
+                if (button.dataset.emoji === emoji) { // Changed 'selectedEmoji' to 'emoji'
+                    button.classList.add('selected');
+                } else {
+                    button.classList.remove('selected');
+                }
+            });
+
+            // Show a temporary confirmation message
+            const messageBox = document.createElement('div');
+            messageBox.className = 'fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50';
+            messageBox.innerHTML = `
+                <div class="bg-white p-8 rounded-lg shadow-xl text-center">
+                    <h3 class="text-2xl font-bold text-emerald-700 mb-4">Reaction Recorded!</h3>
+                    <p class="text-xl mb-6">Thank you for your input!</p>
+                    <button onclick="this.parentNode.parentNode.remove()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out">Close</button>
+                </div>
+            `;
+            document.body.appendChild(messageBox);
+        }
+
+        // Function to load and display previous reactions
+        function loadKlEcoForestReactions() {
+            let reactions = JSON.parse(localStorage.getItem('klEcoForestReactions')) || {};
+
+            // Apply selected class to previously chosen emojis
+            Object.keys(reactions).forEach(questionId => {
+                const questionElement = document.getElementById(questionId);
+                if (questionElement) {
+                    const selectedEmoji = reactions[questionId];
+                    const buttons = questionElement.querySelectorAll('.emoji-button');
+                    buttons.forEach(button => {
+                        if (button.dataset.emoji === selectedEmoji) {
+                            button.classList.add('selected');
+                        } else {
+                            button.classList.remove('selected');
+                        }
+                    });
+                }
+            });
+        }
+
+
+        // Initial page load: show home page and initialize history
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('home-page', false); // Show home page without pushing to history initially
+
+            // Initialize mybutton and assign onscroll listener after DOM is loaded
+            mybutton = document.getElementById("scrollToTopBtn");
+            window.onscroll = function() {scrollFunction()};
+        });
+		
+		const slides = document.querySelectorAll('#kl-eco-forest-story-mode .slide');
+		let currentSlide = 0;
+
+		document.getElementById('nextBtn').addEventListener('click', () => {
+		slides[currentSlide].classList.remove('active');
+		currentSlide = (currentSlide + 1) % slides.length;
+		slides[currentSlide].classList.add('active');
+		});
+
+		document.getElementById('prevBtn').addEventListener('click', () => {
+		slides[currentSlide].classList.remove('active');
+		currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+		slides[currentSlide].classList.add('active');
+		});
+		
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get references to your chat elements
+        // --- Chatbot Logic ---
+            const chatToggleButton = document.getElementById('chat-toggle-button');
+            const chatPopup = document.getElementById('chat-popup');
+            const chatCloseButton = document.getElementById('chat-close-button');
+            const chatInput = document.getElementById('chat-input');
+            const sendButton = document.getElementById('send-button');
+            const chatBody = document.getElementById('chat-body'); // Changed from 'chatMessages' to 'chat-body'
+
+            // Check if all chat elements exist
+            if (chatToggleButton && chatPopup && chatCloseButton && chatInput && sendButton && chatBody) {
+
+                // Function to add a message to the chat display
+                function addMessage(text, sender) {
+                    const messagesContainer = chatBody; // Use chatBody which is already defined and correct
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = `message ${sender}`;
+
+                    if (sender === 'bot') {
+                        messageDiv.innerHTML = `
+                            <div class="avatar">
+                                <span>🤖</span>
+                            </div>
+                            <div class="message-bubble">${text}</div>
+                        `;
+                    } else { // sender === 'user'
+                        messageDiv.innerHTML = `
+                            <div class="message-bubble">${text}</div>
+                        `;
+                    }
+
+                    messagesContainer.appendChild(messageDiv);
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to bottom
+                }
+
+                // Function for bot responses based on user input
+                function addBotResponse(userMessage) {
+                    let response = "I'm sorry, I didn't quite understand that. I can help with information about Malaysia's nature, tourism, and specific locations like Sijangkang Mangrove Recreational Park. Try asking about 'rainforests', 'beaches', 'mountains', or 'wildlife'.";
+                    const lowerCaseMessage = userMessage.toLowerCase();
+
+                    if (lowerCaseMessage.includes('hello') || lowerCaseMessage.includes('hi')) {
+                        response = "Hello! Welcome to MYECOSYSTEM. How can I assist you in exploring Malaysia's natural wonders today?";
+                    } else if (lowerCaseMessage.includes('thank')) {
+                        response = "You're most welcome! I'm glad I could help. Is there anything else you'd like to know about Malaysia's ecosystems?";
+                    } else if (lowerCaseMessage.includes('location') || lowerCaseMessage.includes('where')) {
+                        response = "You can find detailed location information for our featured attractions on their specific sections, usually with an interactive map or a 'View Location' button!";
+                    } else if (lowerCaseMessage.includes('mangrove') || lowerCaseMessage.includes('sijangkang')) {
+                        response = "The Sijangkang Mangrove Recreational Park is a crucial natural defense and wildlife sanctuary! You can find its location and more details on our 'Features' page. Look for the 'View Location' button under its section.";
+                    } else if (lowerCaseMessage.includes('eco forest') || lowerCaseMessage.includes('kl forest') || lowerCaseMessage.includes('bukit nanas')) {
+                        response = "KL Eco Forest is an urban oasis in Kuala Lumpur, known for its canopy walk and rich biodiversity, formerly Bukit Nanas Forest Reserve. It's a unique natural escape right in the city!";
+                    } else if (lowerCaseMessage.includes('rainforest') || lowerCaseMessage.includes('jungle')) {
+                        response = "When it comes to rainforests, Malaysia boasts ancient jungles like those found at KL Eco Forest, a unique urban setting with a canopy walk. These are vital for biodiversity.";
+                    } else if (lowerCaseMessage.includes('wildlife') || lowerCaseMessage.includes('animals')) {
+                        response = "Malaysia's natural areas like Sijangkang Mangrove and KL Eco Forest are home to diverse wildlife. You can learn more about them in our 'Wildlife Spotting Guides' on the Features page.";
+                    } else if (lowerCaseMessage.includes('about')) {
+                        response = "MYECOSYSTEM is dedicated to transforming academic research into engaging, interactive experiences, promoting and preserving Malaysia's natural heritage. Visit our 'About' page for more!";
+                    } else if (lowerCaseMessage.includes('contact')) {
+                        response = "You can reach out to us via the contact form on our 'Contact' page, or send an email directly if you prefer!";
+                    } else if (lowerCaseMessage.includes('features')) {
+                        response = "Our 'Features' page highlights key sections like Interactive Maps, Wildlife Spotting Guides, and specific park information for places like Sijangkang Mangrove and KL Eco Forest. It's a great place to start exploring!";
+                    } else if (lowerCaseMessage.includes('map')) {
+                        response = "Yes, we have interactive maps! You can find them on our 'Features' page or look for 'View Location' buttons on specific park sections like Sijangkang Mangrove.";
+                    } 
+                    
+                    // Add more conditions here for other keywords related to your site content
+
+                    addMessage(response, 'bot');
+                }
+
+                // Event Listener for the main chat toggle button (to open/close the popup)
+                chatToggleButton.addEventListener('click', () => {
+                    chatPopup.classList.toggle('show');
+                });
+
+                // Event Listener for the close button inside the popup
+                chatCloseButton.addEventListener('click', () => {
+                    chatPopup.classList.remove('show');
+                });
+
+                // Send message logic
+                const sendMessage = () => {
+                    const messageText = chatInput.value.trim();
+                    if (messageText === '') {
+                        return; // Don't send empty messages
+                    }
+
+                    addMessage(messageText, 'user'); // Add user message using the new function
+                    chatInput.value = ''; // Clear input
+
+                    // Get bot response and add it after a short delay
+                    setTimeout(() => {
+                        addBotResponse(messageText); // Pass user message to get intelligent response
+                    }, 1000); // 1 second delay
+                };
+
+                sendButton.addEventListener('click', sendMessage);
+
+                chatInput.addEventListener('keypress', (event) => {
+                    if (event.key === 'Enter') {
+                        event.preventDefault();
+                        sendMessage();
+                    }
+                });
+
+            } else {
+                console.error("One or more chat elements not found. Check IDs in HTML and JS.");
+            }
+
+            // --- KESEDAR Quiz Logic ---
+            const kesedarQuestions = [
+                {
+                    question: "When was Lembaga Kemajuan Kelantan Selatan (KESEDAR) established?",
+                    answers: {
+                        a: "January 1, 1970",
+                        b: "May 1, 1978",
+                        c: "September 15, 1985",
+                        d: "December 10, 1990"
+                    },
+                    correct: "b"
+                },
+                {
+                    question: "What is one of KESEDAR's primary responsibilities as a regional development authority?",
+                    answers: {
+                        a: "Regulating international trade.",
+                        b: "Managing and promoting natural resource areas that hold tourism potential.",
+                        c: "Developing new agricultural technologies.",
+                        d: "Overseeing the national education system."
+                    },
+                    correct: "b"
+                },
+                {
+                    question: "Which of the following is NOT listed as a natural resource area that KESEDAR is responsible for managing and promoting?",
+                    answers: {
+                        a: "Forest reserves",
+                        b: "Eco-parks",
+                        c: "Waterfalls",
+                        d: "Mountain ski resorts"
+                    },
+                    correct: "d"
+                },
+                {
+                    question: "What is the significance of understanding how social media content impacts tourists' decision-making for KESEDAR?",
+                    answers: {
+                        a: "To reduce operational costs.",
+                        b: "To increase agricultural output.",
+                        c: "To enhance its marketing strategies and promote sustainable tourism.",
+                        d: "To expand its administrative offices."
+                    },
+                    correct: "c"
+                },
+                {
+                    question: "What percentage of slopes in the southern Kelantan region, where KESEDAR operates, exceed 25 degrees?",
+                    answers: {
+                        a: "Approximately 10%",
+                        b: "Less than 20%",
+                        c: "Nearly 50%",
+                        d: "More than 75%"
+                    },
+                    correct: "c"
+                },
+                {
+                    question: "According to the KESEDAR research document, what has the rapid advancement of technology and the Internet transformed, allowing information to be shared quickly and without geographical limitations?",
+                    answers: {
+                        a: "Only business transactions.",
+                        b: "Communication, marketing, and social interactions.",
+                        c: "Government policy making.",
+                        d: "Agricultural practices."
+                    },
+                    correct: "b"
+                },
+                {
+                    question: "Which type of content is considered a key element in the promotional efforts of natural attractions via social media, according to the KESEDAR research document?",
+                    answers: {
+                        a: "Formal scientific reports.",
+                        b: "Television advertisements.",
+                        c: "User-generated content (images, videos, reviews).",
+                        d: "Radio broadcasts."
+                    },
+                    correct: "c"
+                },
+                {
+                    question: "One of the research objectives of the KESEDAR study is to analyze the effectiveness of using social media platforms in promoting visitor attractions. What is the other main research objective?",
+                    answers: {
+                        a: "To quantify the financial returns from social media marketing.",
+                        b: "To identify the tools used in promoting visitor attractions.",
+                        c: "To compare the reach of different social media influencers.",
+                        d: "To assess the ethical implications of digital marketing."
+                    },
+                    correct: "b"
+                },
+                {
+                    question: "Dabong is known for its diverse natural attractions. Which of the following is a prominent natural attraction often associated with Dabong?",
+                    answers: {
+                        a: "Petronas Twin Towers",
+                        b: "Mount Kinabalu",
+                        c: "Gunung Stong State Park",
+                        d: "Batu Caves"
+                    },
+                    correct: "c"
+                },
+                {
+                    question: "What type of ecosystem is Gunung Stong State Park, a key area in Dabong, primarily known for?",
+                    answers: {
+                        a: "Mangrove forests",
+                        b: "Highland tea plantations",
+                        c: "Limestone caves and waterfalls",
+                        d: "Tropical rainforests"
+                    },
+                    correct: "d"
+                },
+                {
+                    question: "The Jelawang Waterfall, one of the tallest in Southeast Asia, is located near which KESEDAR-managed area?",
+                    answers: {
+                        a: "Jeli",
+                        b: "Gua Musang",
+                        c: "Dabong",
+                        d: "Kuala Krai"
+                    },
+                    correct: "c"
+                },
+                {
+                    question: "What role does KESEDAR play in the development and promotion of areas like Dabong?",
+                    answers: {
+                        a: "Primarily agricultural land development.",
+                        b: "Focuses on industrial zone creation.",
+                        c: "Involves regional development, including promoting tourism and natural resources.",
+                        d: "Strictly manages public transportation networks."
+                    },
+                    correct: "c"
+                },
+                {
+                    question: "Which of these activities is commonly enjoyed by visitors in the Dabong region, leveraging its natural environment?",
+                    answers: {
+                        a: "Shopping mall tours",
+                        b: "Urban historical walks",
+                        c: "Caving and jungle trekking",
+                        d: "High-speed rail travel"
+                    },
+                    correct: "c"
+                }
+            ];
+
+            const kesedarQuizForm = document.getElementById('kesedar-quiz-form');
+            const kesedarSubmitQuizBtn = document.getElementById('kesedar-submit-quiz-btn');
+            const kesedarResultsContainer = document.getElementById('kesedar-results');
+            const kesedarScoreDisplay = document.getElementById('kesedar-score');
+            const kesedarTotalQuestionsDisplay = document.getElementById('kesedar-total-questions');
+            const kesedarFeedbackDetails = document.getElementById('kesedar-feedback-details');
+            const kesedarRestartQuizBtn = document.getElementById('kesedar-restart-quiz-btn');
+
+            function loadKesedarQuiz() {
+                kesedarQuizForm.innerHTML = ''; // Clear previous questions
+                kesedarResultsContainer.classList.add('hidden'); // Hide results
+                kesedarSubmitQuizBtn.style.display = 'block'; // Show submit button
+                // No need to toggle hidden class on kesedar-quiz-container here, as it's on a new page.
+                // The showPage('kesedar-quiz-page') call will handle visibility.
+
+                kesedarQuestions.forEach((q, index) => {
+                    const questionCard = document.createElement('div');
+                    questionCard.classList.add('quiz-question-card'); // Use quiz-prefixed class
+                    questionCard.innerHTML = `
+                        <p class="quiz-question-text">${index + 1}. ${q.question}</p>
+                        <div class="quiz-answer-choices" id="kesedar-question-${index}">
+                            ${Object.entries(q.answers).map(([key, value]) => `
+                                <div class="quiz-answer-choice">
+                                    <input type="radio" id="kesedar-q${index}-${key}" name="kesedarQuestion${index}" value="${key}">
+                                    <label for="kesedar-q${index}-${key}">${key.toUpperCase()}. ${value}</label>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                    kesedarQuizForm.appendChild(questionCard);
+                });
+                kesedarTotalQuestionsDisplay.textContent = kesedarQuestions.length;
+            }
+
+            function submitKesedarQuiz() {
+                let score = 0;
+                kesedarFeedbackDetails.innerHTML = ''; // Clear previous feedback
+
+                kesedarQuestions.forEach((q, index) => {
+                    const selectedAnswer = document.querySelector(`input[name="kesedarQuestion${index}"]:checked`);
+                    const feedbackItem = document.createElement('p');
+                    feedbackItem.classList.add('quiz-feedback-item'); // Use quiz-prefixed class
+
+                    if (selectedAnswer) {
+                        if (selectedAnswer.value === q.correct) {
+                            score++;
+                            feedbackItem.classList.add('correct');
+                            feedbackItem.innerHTML = `<strong>${index + 1}. Correct!</strong>`;
+                        } else {
+                            feedbackItem.classList.add('incorrect');
+                            feedbackItem.innerHTML = `<strong>${index + 1}. Incorrect.</strong> Your answer: ${selectedAnswer.value.toUpperCase()}. Correct answer: <span class="correct-answer">${q.correct.toUpperCase()}. ${q.answers[q.correct]}</span>`;
+                        }
+                    } else {
+                        feedbackItem.classList.add('incorrect');
+                        feedbackItem.innerHTML = `<strong>${index + 1}. Unanswered.</strong> Correct answer: <span class="correct-answer">${q.correct.toUpperCase()}. ${q.answers[q.correct]}</span>`;
+                    }
+                    kesedarFeedbackDetails.appendChild(feedbackItem);
+                });
+
+                kesedarScoreDisplay.textContent = score;
+                kesedarResultsContainer.classList.remove('hidden');
+                kesedarSubmitQuizBtn.style.display = 'none'; // Hide submit button after submission
+            }
+
+            // Event Listeners for KESEDAR Quiz
+            document.getElementById('kesedar-submit-quiz-btn').addEventListener('click', submitKesedarQuiz);
+            document.getElementById('kesedar-restart-quiz-btn').addEventListener('click', loadKesedarQuiz);
+            
+            // Function to be called by the "Start KESEDAR Quiz" button - now navigates to the quiz page
+            window.startKesedarQuiz = function() {
+                showPage('kesedar-quiz-page', true); // Navigate to the quiz page
+                loadKesedarQuiz(); // Load the quiz questions
+            };
+
+            // --- Initialize the Page ---
+            showPage('home-page', false); // Show the home page on initial load
+        });
+  </script>
+</html>
